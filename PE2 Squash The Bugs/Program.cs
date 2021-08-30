@@ -21,18 +21,21 @@ namespace SquashBugsICE
         {
             // declare int counter
             //missing ; at the end (syntax error)
+            //change int to double (logic error)
             //int i = 0
-            int i = 0;
+            double i = 0;
 
             // loop through the numbers 1 through 10
-            for (i = 1; i < 10; ++i)
+            // change i = 1 to i = 0
+            // for (i = 1; i < 10; ++i)(Logic error)
+            for (i = 0; i < 10; ++i)
             {
                 // declare string to hold all numbers
                 string allNumbers = null;
 
                 // output explanation of calculation
                 //missing the parentheses.
-                //Console.Write(i + "/" + i - 1 + " = ");
+                //Console.Write(i + "/" + i - 1 + " = "); (Logic Error + Syntax Error)
                 Console.Write(i + "/" + (i - 1) + " = ");
 
                 // output the calculation based on the numbers
@@ -42,12 +45,16 @@ namespace SquashBugsICE
                 allNumbers += i + " ";
 
                 // increment the counter
-                i = i + 1;
+                // dont need it. it already add one in the ++i part (logic error)
+                //i = i + 1;
 
                 // output all numbers which have been processed
                 // Console.WriteLine("These numbers have been processed: " allNumbers);
                 // move the line up from outside of for (i = 1; i < 10; ++i), then add + to connect the lines together. (syntax error)
                 Console.WriteLine("These numbers have been processed: " + allNumbers);
+
+                //stop and see the number changes
+                Console.Read();
             }
 
 
