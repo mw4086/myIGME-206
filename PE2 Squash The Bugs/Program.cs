@@ -27,8 +27,9 @@ namespace SquashBugsICE
 
             // loop through the numbers 1 through 10
             // change i = 1 to i = 0
-            // for (i = 1; i < 10; ++i)(Logic error)
-            for (i = 0; i < 10; ++i)
+            // add = to i <10. make it from less then 10 to include 10.  
+            // for (i = 1; i <= 10; ++i)(Logic error)
+            for (i = 0; i <= 10; ++i)
             {
                 // declare string to hold all numbers
                 string allNumbers = null;
