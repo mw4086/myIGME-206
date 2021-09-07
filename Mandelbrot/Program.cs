@@ -21,42 +21,57 @@ namespace Mandelbrot
 		[STAThread]
 		static void Main(string[] args)
 		{
-         double realCoord, imagCoord;
-         double realTemp, imagTemp, realTemp2, arg;
-         int iterations;
-         for (imagCoord = 1.2; imagCoord >= -1.2; imagCoord -= 0.05)
-         {
-            for (realCoord = -0.6; realCoord <= 1.77; realCoord += 0.03)
-            {
-               iterations = 0;
-               realTemp = realCoord;
-               imagTemp = imagCoord; 
-               arg = (realCoord * realCoord) + (imagCoord * imagCoord);
-               while ((arg < 4) && (iterations < 40))
-               {
-                  realTemp2 = (realTemp * realTemp) - (imagTemp * imagTemp)
-                     - realCoord;
-                  imagTemp = (2 * realTemp * imagTemp) - imagCoord;
-                  realTemp = realTemp2;
-                  arg = (realTemp * realTemp) + (imagTemp * imagTemp);
-                  iterations += 1;
-               }
-               switch (iterations % 4)
-               {
-                  case 0:
-                     Console.Write(".");
-                     break;
-                  case 1:
-                     Console.Write("o");
-                     break;
-                  case 2:
-                     Console.Write("O");
-                     break;
-                  case 3:
-                     Console.Write("@");
-                     break;
-               }
-            }
+            double realCoord, imagCoord;
+            double realTemp, imagTemp, realTemp2, arg;
+            int iterations;
+            double minRealCoord, maxRealCoord;
+            double minImagCoord, maxImagCoord;
+
+            Console.WriteLine("Please enter the min value of realCoord default is -0.6 ");
+            minRealCoord = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Please enter the max value of realCoord default is 1.77 ");
+            maxRealCoord = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Please enter the min value of imagCoord default is -1.2 ");
+            minImagCoord = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Please enter the max value of imagCoord default is 1.2 ");
+            maxImagCoord = Convert.ToDouble(Console.ReadLine());
+
+            for (imagCoord = maxImagCoord; imagCoord >= minImagCoord; imagCoord -= (maxImagCoord - (minImagCoord)) / 48) 
+             {
+                for (realCoord = minRealCoord; realCoord <= maxRealCoord; realCoord += (maxRealCoord-(minRealCoord))/48)
+                {
+                   iterations = 0;
+                   realTemp = realCoord;
+                   imagTemp = imagCoord; 
+                   arg = (realCoord * realCoord) + (imagCoord * imagCoord);
+                   while ((arg < 4) && (iterations < 40))
+                   {
+                      realTemp2 = (realTemp * realTemp) - (imagTemp * imagTemp)
+                         - realCoord;
+                      imagTemp = (2 * realTemp * imagTemp) - imagCoord;
+                      realTemp = realTemp2;
+                      arg = (realTemp * realTemp) + (imagTemp * imagTemp);
+                      iterations += 1;
+                   }
+                   switch (iterations % 4)
+                   {
+                      case 0:
+                         Console.Write(".");
+                         break;
+                      case 1:
+                         Console.Write("o");
+                         break;
+                      case 2:
+                         Console.Write("O");
+                         break;
+                      case 3:
+                         Console.Write("@");
+                         break;
+                   }
+                }
             Console.Write("\n");
          }
             Console.ReadLine();
