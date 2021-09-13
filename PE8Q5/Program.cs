@@ -6,25 +6,46 @@ using System.Threading.Tasks;
 
 namespace PE8Q5
 {
-    class Program
+    public struct ZFunction
     {
-        static void Main(string[] args)
+
+        class Program
         {
-            double[,,] data = new double[630,630,630];
-            int i = 0;
-            for(double x = -1; x < 1; x += 0.1)
+            static void Main(string[] args)
             {
-                for(double y = 1; y < 4; y += 0.1)
+                double x = 0;
+                double y = 0;
+                double z = 0;
+
+                int nX = 0;
+                int nY = 0;
+
+                double[,,] zFunc = new double[21, 31, 3];
+
+                for (x = -1; x <= 1; x += 0.1, ++nX)
                 {
-                    data[i, i, i] = (3 * y * y) + (2 * x) - 1;
-                    i++;
+                    x = Math.Round(x, 1);
+                    nY = 0;
+                    for (y = 1; y <= 4; y += 0.1, ++nY)
+                    {
+                        y = Math.Round(y, 1);
+                        z = 3 * Math.Pow(y, 2) + 3 * x - 1;
+                        z = Math.Round(z, 3);
+
+                        zFunc[nX, nY, 0] = x;
+                        zFunc[nX, nY, 1] = y;
+                        zFunc[nX, nY, 2] = z;
+                    }
                 }
+                for (int a=0; a < zFunc.GetLength(0); a++)
+                {
+                    for(int b = 0; b < zFunc.GetLength(1); b++)
+                    {
+                        Console.WriteLine("x={0} y{1} z{2}", zFunc[a, b, 0], zFunc[a, b, 1], zFunc[a, b, 2]);
+                    }
+                }
+                Console.ReadLine();
             }
-            foreach(var item in data)
-            {
-                Array.ForEach(data, Console.WriteLine);
-            }
-            Console.ReadLine();
         }
     }
 }
