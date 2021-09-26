@@ -4,17 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace test
+namespace Unit1Test1Q12
 {
     class Program
     {
         static void Main(string[] args)
         {
-            byte byteVal;
-            short shortVal = -556;
-            byteVal = (byte)shortVal;
-            Console.WriteLine("byteVal = {0}", byteVal);
-            Console.ReadLine();
+
         }
     }
 }
