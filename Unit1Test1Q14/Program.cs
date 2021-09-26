@@ -19,23 +19,26 @@ namespace UT1_BugSquash
             do
             {
                 Console.Write("Enter a whole number for x: ");
-                Console.ReadLine();
+                //missing storge val for ReadLine
+                sNumber = Console.ReadLine();
             } while (!int.TryParse(sNumber, out nX));
 
             do
             {
                 Console.Write("Enter a positive whole number for y: ");
                 sNumber = Console.ReadLine();
-            } while (int.TryParse(sNumber, out nX));
+            } while (!int.TryParse(sNumber, out nY));//missing "!" as logical error and assigned to the wrong val, the correct onw shold be nY
 
             // compute the factorial of the number using a recursive function
             nAnswer = Power(nX, nY);
 
-            Console.WriteLine("{nX}^{nY} = {nAnswer}");
+            //wrong format
+            Console.WriteLine("{0}^{1} = {2}", nX, nY, nAnswer);
         }
 
 
-        int Power(int nBase, int nExponent)
+        //missing static
+        static int Power(int nBase, int nExponent)
         {
             int returnVal = 0;
             int nextVal = 0;
@@ -44,21 +47,18 @@ namespace UT1_BugSquash
             if (nExponent == 0)
             {
                 // return the base case and do not recurse
-                returnVal = 0;
+                returnVal = 1;//base case return val sholud be 1
             }
             else
             {
                 // compute the subsequent values using nExponent-1 to eventually reach the base case
-                nextVal = Power(nBase, nExponent + 1);
+                nextVal = Power(nBase, nExponent - 1);//wrong operator, changed "+" to "-"
 
                 // multiply the base with all subsequent values
                 returnVal = nBase * nextVal;
             }
-            //need console.writeline around to show
-            Console.WriteLine(returnVal);
-            //add readline to be easy for test
-            Console.ReadLine();
+            //missing return
+            return returnVal;
         }
     }
 }
-
