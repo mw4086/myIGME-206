@@ -21,5 +21,13 @@ namespace PE12Q3
                 return base.GetString() + " (output from derived class)";
             }
         }
+        class Program
+        {
+            public static void Main()
+            {
+                MyDerivedClass myDerivedClass = new MyDerivedClass();
+                Console.WriteLine(myDerivedClass.GetString());
+            }
+        }
     }
 }
