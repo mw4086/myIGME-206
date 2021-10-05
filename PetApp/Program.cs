@@ -56,11 +56,11 @@ namespace PetApp
         }
         public void Purr()
         {
-            Console.WriteLine("{0}: Meow(^・ω・^ )", Name);
+            Console.WriteLine("{0}: Meow", Name);
         }
         public void Scratch()
         {
-            Console.WriteLine("{0}: [PH]scratch", Name);
+            Console.WriteLine("{0}: scratch", Name);
         }
         public override void GotoVet()
         {
@@ -87,7 +87,7 @@ namespace PetApp
         }
         public void Bark()
         {
-            Console.WriteLine("{0}: [PH]Bark_sound_here", Name);
+            Console.WriteLine("{0}: Woof", Name);
         }
         public void NeedWalk()
         {
@@ -253,46 +253,46 @@ namespace PetApp
                         if (thisPet.GetType() == typeof(Dog))
                         {
                             dog = (Dog)thisPet;
-                            //iDog = new IDog();
+                            iDog = dog;
                             rAct = rand.Next(1, 5);
                             switch (rAct)
                             {
                                 case 1:
-                                    dog.Eat();
+                                    iDog.Eat();
                                     break;
                                 case 2:
-                                    dog.Play();
+                                    iDog.Play();
                                     break;
                                 case 3:
-                                    dog.Bark();
+                                    iDog.Bark();
                                     break;
                                 case 4:
-                                    dog.NeedWalk();
+                                    iDog.NeedWalk();
                                     break;
                                 case 5:
-                                    dog.GotoVet();
+                                    iDog.GotoVet();
                                     break;
                             }
                         }
                         else if (thisPet.GetType() == typeof(Cat))
                         {
-                            //iCat = new ICat();
                             cat = (Cat)thisPet;
+                            iCat = cat;
 
                             rAct = rand.Next(1, 4);
                             switch (rAct)
                             {
                                 case 1:
-                                    cat.Eat();
+                                    iCat.Eat();
                                     break;
                                 case 2:
-                                    cat.Play();
+                                    iCat.Play();
                                     break;
                                 case 3:
-                                    cat.Scratch();
+                                    iCat.Scratch();
                                     break;
                                 case 4:
-                                    cat.Purr();
+                                    iCat.Purr();
                                     break;
                             }
                         }
