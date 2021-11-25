@@ -146,6 +146,25 @@ namespace BTree
             VisualizeBinaryTree visualizeBinaryTree = new VisualizeBinaryTree(root);
         }
 
+        public static void ascendingOrder(BTree node, ref List<int> list)
+        {
+            if (node != null)
+            {
+                // handle "less than" children
+                ascendingOrder(node.ltChild, ref list);
+
+                if (node.isData)
+                {
+                    // handle current node
+                    list.Add((int)node.data);
+                }
+
+                // handle "greater than or equal to children"
+                ascendingOrder(node.gteChild, ref list);     
+            }
+        }
+
+
         private void Button4_Click(object sender, EventArgs e)
         {
             // Exercise #1
@@ -159,22 +178,34 @@ namespace BTree
             BTree node = null;
             BTree root = null;
 
-            Random r = new Random();
+            node = new BTree(1, root);
+            node = new BTree(5, root);
+            node = new BTree(15, root);
+            node = new BTree(20, root);
+            node = new BTree(21, root);
+            node = new BTree(22, root);
+            node = new BTree(23, root);
+            node = new BTree(24, root);
+            node = new BTree(25, root);
+            node = new BTree(30, root);
+            node = new BTree(35, root);
+            node = new BTree(37, root);
+            node = new BTree(40, root);
+            node = new BTree(55, root);
+            node = new BTree(60, root);
 
-            node = new BTree(r.Next(1, 51), null);
-            root = node;
-            for(int i = 0; i <29; i++)
+            List<int> list = new List<int>();
+            ascendingOrder(root,ref list);
+
+            BTree root2 = null;
+
+            foreach(var item in list)
             {
-                node = new BTree(r.Next(1, 51), root);
+                node = new BTree(item, root2);
             }
 
-            //this.richTextBox1.Text += "\n";
-            //BTree.TraverseAscending(root);
-            this.richTextBox1.Text += "\n";
-            BTree.TraverseAscending(root);
-
             //VisualizeBinaryTree visualizeBinaryTree = new VisualizeBinaryTree(root);
-            VisualizeBinaryTree visualizeBinaryTree = new VisualizeBinaryTree(root);
+            VisualizeBinaryTree visualizeBinaryTree = new VisualizeBinaryTree(root2);
         }
 
         private void Button5_Click(object sender, EventArgs e)
